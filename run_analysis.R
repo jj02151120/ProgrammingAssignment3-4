@@ -1,4 +1,4 @@
-setwd('C:\\Users\\kudos\\Dropbox\\course\\Coursera\\JHU_Data Science Foundation using R\\Class3_week4\\programming assignment')
+setwd('C:\\Users\\kudos\\Dropbox\\course\\Coursera\\JHU_Data Science Foundation using R\\Class3_week4\\programming assignment git\\ProgrammingAssignment3-4')
 
 dataTrainingX <- read.table('.\\data\\UCI HAR Dataset\\train\\X_train.txt')
 dataTrainingY <- read.table('.\\data\\UCI HAR Dataset\\train\\Y_train.txt')
@@ -36,10 +36,10 @@ library(dplyr)
 #datasetFinal <- cbind(dataExtractedWithDescriptiveName, descritiveActivity)
 names(datasetFinal)
 g <- group_by(datasetFinal, descritiveActivity)
-g[,c(1,2,ncol(dataExtractedWithDescriptiveName))]
 k <- summarize_all(g, mean)
-newVariableName <- paste(names(k), rep(c('--mean'), each=ncol(dataExtractedWithDescriptiveName)), sep='')
+newVariableName <- paste(names(k), rep(c('--mean'), each=ncol(datasetFinal)), sep='')
 k <- setNames(k, newVariableName)
 write.csv(k, '.\\05_summary.csv')
+write.table(k, '.\\05_summary.txt', row.name=FALSE)
 
 
